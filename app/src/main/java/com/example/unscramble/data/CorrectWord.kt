@@ -7,4 +7,5 @@ import androidx.room.PrimaryKey
 data class CorrectWord(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val word: String
+
 )
