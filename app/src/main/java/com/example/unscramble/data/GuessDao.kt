@@ -1,15 +1,15 @@
 package com.example.unscramble.data
 
-
-import androidx.room3.Dao
-import androidx.room3.Insert
-import androidx.room3.Query
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface GuessDao {
-    @Query("SELECT * FROM WordData")
-    suspend fun getAll(): List<WordData>
+    @Query("SELECT * FROM correct_words")
+    fun getAll(): Flow<List<CorrectWord>>
 
     @Insert
-    suspend fun insert(vararg CorrectWord: CorrectWord))
+    suspend fun insert(word: CorrectWord)
 }

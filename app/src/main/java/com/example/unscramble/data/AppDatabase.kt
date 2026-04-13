@@ -1,14 +1,14 @@
 package com.example.unscramble.data
 
 import android.content.Context
-import androidx.room3.Room
-import androidx.room3.RoomDatabase
-import androidx.room3.vo.Database
+import androidx.room.Database
+import androidx.room.RoomDatabase
+import androidx.room.Room
 
-@Database(entities = [Character::class], version = 1)
+@Database(entities = [CorrectWord::class], version = 1, exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
 
-    abstract fun GuessDao() : GuessDao
+    abstract fun guessDao() : GuessDao
 
     companion object {
         @Volatile
@@ -19,7 +19,7 @@ abstract class AppDatabase: RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
-                    "WordData" // Nama databasenya
+                    "WordDatabase"
                 ).build()
                 INSTANCE = instance
                 instance

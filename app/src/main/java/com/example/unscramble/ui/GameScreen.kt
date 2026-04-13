@@ -1,18 +1,3 @@
-/*
- * Copyright (C) 2023 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.example.unscramble.ui
 
 import android.app.Activity
@@ -59,7 +44,10 @@ import com.example.unscramble.R
 import com.example.unscramble.ui.theme.UnscrambleTheme
 
 @Composable
-fun GameScreen(gameViewModel: GameViewModel = viewModel()) {
+fun GameScreen(
+    gameViewModel: GameViewModel = viewModel(),
+    onNavigateToHistory: () -> Unit // Parameter navigasi ditambahkan
+) {
     val gameUiState by gameViewModel.uiState.collectAsState()
     val mediumPadding = dimensionResource(R.dimen.padding_medium)
 
@@ -113,6 +101,17 @@ fun GameScreen(gameViewModel: GameViewModel = viewModel()) {
             ) {
                 Text(
                     text = stringResource(R.string.skip),
+                    fontSize = 16.sp
+                )
+            }
+
+            // Tombol Navigasi History ditambahkan di sini
+            Button(
+                onClick = onNavigateToHistory,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(
+                    text = "Lihat History Jawaban",
                     fontSize = 16.sp
                 )
             }
@@ -254,6 +253,7 @@ private fun FinalScoreDialog(
 @Composable
 fun GameScreenPreview() {
     UnscrambleTheme {
-        GameScreen()
+        // Parameter dummy agar preview tidak error
+        GameScreen(onNavigateToHistory = {})
     }
 }

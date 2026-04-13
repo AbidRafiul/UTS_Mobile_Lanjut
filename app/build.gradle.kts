@@ -18,6 +18,8 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
+
+    id("androidx.room")
     id("com.google.devtools.ksp")
 }
 
@@ -66,10 +68,6 @@ android {
 
 dependencies {
 
-    implementation("androidx.room3:room3-compiler:3.0.0-alpha02")
-    implementation("androidx.room3:room3-runtime:3.0.0-alpha02")
-    ksp("androidx.room:room-compiler:2.5.0")
-
     implementation(platform("androidx.compose:compose-bom:2024.12.01"))
     implementation("androidx.activity:activity-compose:1.9.3")
     implementation("androidx.compose.material3:material3")
@@ -79,6 +77,11 @@ dependencies {
     implementation("androidx.core:core-ktx:1.15.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
+
+    val room_version = "2.7.0"
+
+    implementation("androidx.room:room-runtime:$room_version")
+    ksp("androidx.room:room-compiler:$room_version")
 
 
     debugImplementation("androidx.compose.ui:ui-test-manifest")
