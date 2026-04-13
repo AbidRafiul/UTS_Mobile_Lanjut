@@ -7,9 +7,9 @@ import androidx.room3.Query
 
 @Dao
 interface GuessDao {
-    @Query("SELECT * FROM characters")
-    suspend fun getAllCharacters(): List<Character>
+    @Query("SELECT * FROM WordData")
+    suspend fun getAll(): List<WordData>
 
     @Insert
-    suspend fun insert(vararg character: Character)
+    suspend fun insert(vararg CorrectWord: CorrectWord))
 }
